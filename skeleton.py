@@ -1,35 +1,5 @@
 import math
 
-
-class Skeleton:
-
-    def __init__(self, left_hand, left_forearm, left_bicep, left_thigh,
-                 left_shin, left_foot, right_hand, right_forearm, right_bicep,
-                 right_thigh, right_shin, right_foot, upper_torso,
-                 lower_torso):
-        self.left_hand = left_hand
-        self.left_forearm = left_forearm
-        self.left_bicep = left_bicep
-        self.left_thigh = left_thigh
-        self.left_shin = left_shin
-        self.left_foot = left_foot
-        self.right_hand = right_hand
-        self.right_forearm = right_forearm
-        self.right_bicep = right_bicep
-        self.right_thigh = right_thigh
-        self.right_shin = right_shin
-        self.right_foot = right_foot
-        self.upper_torso = upper_torso
-        self.lower_torso = lower_torso
-
-
-class Limb:
-
-    def __init__(self, magnitude, quaternion):
-        self.magnitude = magnitude
-        self.quaternion = quaternion
-
-
 class Quaternion:
 
     def __init__(self, w=1, x=0, y=0, z=0):
@@ -75,11 +45,3 @@ class Quaternion:
              - math.cos(roll) * math.sin(pitch) * math.cos(yaw))
         k = math.cos(roll) * math.cos(pitch)
         return round(i, 4), round(j, 4), round(k, 4)
-
-
-Q1 = Quaternion(1, 0, 0, 0)
-Q2 = Quaternion(.5, -.5, .5, .5)
-Q3 = Quaternion(0.3535534, 0.3535534, 0.1464466, 0.8535534)
-print(Q1.to_euler(), Q1.to_unit_vector(), "\n",
-      Q2.to_euler(), Q2.to_unit_vector(), "\n",
-      Q3.to_euler(), Q3.to_unit_vector())
