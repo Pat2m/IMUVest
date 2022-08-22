@@ -6,7 +6,7 @@ Created on Mon Aug 15 14:30:24 2022
 @author: Pat
 """
 
-from Quaternion import Quaternion
+from quaternion.Quaternion import Quaternion
 import numpy as np
 import math
 
