@@ -128,7 +128,10 @@ class QuaternionMath:
         q = q.qGet()
         r = 0
         halfPi = math.pi/2
-        p = math.asin((2*(q[0]*q[2]+q[1]*q[3])))
+        if (((q[0] or q[2]) and (q[1] or q[3]))==0) :
+            p = 0
+        else:
+            p = math.asin((2*(q[0]*q[2]+q[1]*q[3])))
         if (p == halfPi):
             y = -2 * math.atan2(q[1],q[0])
         elif (p == -1* halfPi):

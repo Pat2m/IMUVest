@@ -21,9 +21,9 @@ def animate():
 
 fig = plt.figure()
 ax=plt.axes(projection='3d')
-ax.axes.set_xlim3d(left=0, right=100) 
-ax.axes.set_ylim3d(bottom=0, top=100) 
-ax.axes.set_zlim3d(bottom=0, top=100) 
+ax.axes.set_xlim3d(left=0, right=30) 
+ax.axes.set_ylim3d(bottom=0, top=30) 
+ax.axes.set_zlim3d(bottom=0, top=30) 
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
@@ -37,7 +37,7 @@ v = Q.qToE(qO)
 v = plotter.uVector(v)
 
 #axis and radius
-p0 = np.array([50, 52, 0]) #point at one end
+p0 = np.array([20, 22, 0]) #point at one end
 R = .2
 mag = 8
 endpoint = p0 + v * mag
