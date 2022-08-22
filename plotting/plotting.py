@@ -22,7 +22,7 @@ class plotting():
         # s = np.cross(k,y)
         # v = np.cross(s,k)
         # vrot = v* m.cos(r) + np.cross(k, v)* m.sin(r)
-        return [x,y,z]
+        return np.array([x,y,z])
     
     def drawCir(center_x,center_y,center_z,n,scale):
         u = np.linspace(0, 2*np.pi, n)
@@ -63,6 +63,6 @@ class plotting():
         X2, Y2, Z2 = [p0[i] + rsample[i] * np.sin(theta) * n1[i] + rsample[i] * np.cos(theta) * n2[i] for i in [0, 1, 2]]
         # "Top"
         X3, Y3, Z3 = [p0[i] + v[i]*mag + rsample[i] * np.sin(theta) * n1[i] + rsample[i] * np.cos(theta) * n2[i] for i in [0, 1, 2]]
-        return [X,Y,Z], [X2,Y2,Z2], [X3,Y3,Z3] 
+        return [X,Y,Z], [X2,Y2,Z2], [X3,Y3,Z3]
     
 
