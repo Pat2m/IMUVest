@@ -40,8 +40,10 @@ ax=plt.subplot(111, projection='3d')
 ax.axes.set_xlim3d(left=0, right=10) 
 ax.axes.set_ylim3d(bottom=0, top=10) 
 ax.axes.set_zlim3d(bottom=0, top=10) 
-x,y,z = plotter.drawCir()
-ax.plot_surface(x,y,z,color="yellow")
+
+x,y,z = plotter.drawCir(5, 5, 5, 150, .5)
+
+ax.plot_surface(x,y,z,rstride=4, cstride=4, color="yellow")
 ax.plot_surface(s1[0], s1[1], s1[2], color='blue')
 ax.plot_surface(t1[0], t1[1], t1[2], color='blue')
 ax.plot_surface(b1[0], b1[1], b1[2], color='blue')

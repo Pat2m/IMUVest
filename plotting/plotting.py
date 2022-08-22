@@ -24,11 +24,12 @@ class plotting():
         # vrot = v* m.cos(r) + np.cross(k, v)* m.sin(r)
         return [x,y,z]
     
-    def drawCir():
-        u, v = np.mgrid[0:2*np.pi:20j, 0:np.pi:10j]
-        x = np.cos(u)*np.sin(v)
-        y = np.sin(u)*np.sin(v)
-        z = np.cos(v)
+    def drawCir(center_x,center_y,center_z,n,scale):
+        u = np.linspace(0, 2*np.pi, n)
+        v = np.linspace(0, np.pi, n)
+        x =  scale * np.outer(np.cos(u), np.sin(v)) + center_x
+        y =  scale * np.outer(np.sin(u), np.sin(v)) + center_y
+        z =  scale * np.outer(np.ones(np.size(u)), np.cos(v)) + center_z
         return x,y,z
     
     def drawCyl(v, p0, R, mag):
