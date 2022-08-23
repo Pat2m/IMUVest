@@ -12,11 +12,11 @@ class Quaternion:
         self.y = y
         self.z = z
 
-    def to_quadruple(self):
-        return (self.w, self.x, self.y, self.z)
-
     def reset(self):
         self.update(1, 0, 0, 0)
+
+    def to_quadruple(self):
+        return (self.w, self.x, self.y, self.z)
 
     def to_euler(self):
         roll = 0
