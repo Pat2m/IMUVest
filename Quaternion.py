@@ -13,7 +13,7 @@ class Quaternion:
         self.z = z
 
     def reset(self):
-        self.update(1, 0, 0, 0)
+        self.set(1, 0, 0, 0)
 
     def to_quadruple(self):
         return (self.w, self.x, self.y, self.z)
