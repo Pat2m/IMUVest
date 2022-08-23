@@ -49,10 +49,15 @@ class Quaternion:
 
     @staticmethod
     def multiply(q1, q2):
-        q1 = q1.to_quadruple()
-        q2 = q2.to_quadruple()
-        w = q1[0]*q2[0] - q1[1]*q2[1] - q1[2]*q2[2] - q1[3]*q2[3]
-        x = q1[1]*q2[0] + q1[0]*q2[1] + q1[2]*q2[3] - q1[3]*q2[2]
-        y = q1[0]*q2[2] - q1[1]*q2[3] + q1[2]*q2[0] + q1[3]*q2[1]
-        z = q1[0]*q2[3] + q1[1]*q2[3] - q1[3]*q2[1] + q1[3]*q2[0]
+        w1, x1, y1, z1 = q1.to_quadruple()
+        w2, x2, y2, z2 = q2.to_quadruple()
+        w = w1 * w2 - x1 * x2 - y1 * y2 - z1 * z2
+        x = x1 * w1 + w1 * x2 + y1 * z2 - z1 * y2
+        y = w1 * y2 - x1 * z2 + y1 * w1 + z1 * x2
+        z = w1 * z2 + x1 * z2 - z1 * x2 + z1 * w1
         return Quaternion(w, x, y, z)
+
+    @staticmethod
+    def square(q):
+        w, x, y, z = q.to_quadruple()
+        return w ** 2 + x ** 2 + y ** 2 + z ** 2
