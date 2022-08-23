@@ -120,8 +120,3 @@ class Quaternion:
         y = yl * r1 + yr * r2
         z = zl * r1 + zr * r2
         return Quaternion(w, x, y, z)
-
-
-q1 = Quaternion(0.5992544, -0.4852698, -0.3969716, 0.4978162)
-q2 = Quaternion(0.2569908, 0.4205305, 0.8363884, -0.2399255)
-print(Quaternion.slerp(q1, q2, .69420).get_quadruple())
