@@ -113,10 +113,10 @@ class Quaternion:
             return Quaternion(w, x, y, z)
 
         half_theta = math.acos(cos_half_theta)
-        r1 = math.sin((1 - weight) * half_theta) / sin_half_theta
-        r2 = math.sin(weight * half_theta) / sin_half_theta
-        w = wl * r1 + wr * r2
-        x = xl * r1 + xr * r2
-        y = yl * r1 + yr * r2
-        z = zl * r1 + zr * r2
+        rl = math.sin((1 - weight) * half_theta) / sin_half_theta
+        rr = math.sin(weight * half_theta) / sin_half_theta
+        w = wl * rl + wr * rr
+        x = xl * rl + xr * rr
+        y = yl * rl + yr * rr
+        z = zl * rl + zr * rr
         return Quaternion(w, x, y, z)
