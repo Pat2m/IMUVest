@@ -32,24 +32,25 @@ class Quaternion:
         return math.sqrt(self.w ** 2 + self.x ** 2 + self.y ** 2 + self.z ** 2)
 
     def to_euler(self):
-        roll = 0
-        d = 2 * (self.w * self.y + self.x * self.z)
-        if d != 0:
-            pitch = math.asin(d)
+        sinr_cosp = 2 * (self.w * self.x + self.y * self.z)
+        cosr_cosp = 1 - 2 * (self.x ** 2 + self.y ** 2)
+        roll_x = math.atan2(sinr_cosp, cosr_cosp)
+    
+        sinp = 2 * (self.w * self.y - self.z * self.x)
+        if (abs(sinp) >= 1):
+            pitch_y = math.copysign(math.pi / 2, sinp)
         else:
-            pitch = 0
-        if d == 1:
-            yaw = -2 * math.atan2(self.x, self.w)
-        elif d == -1:
-            yaw = 2 * math.atan2(self.x, self.w)
-        else:
-            yaw = (-1 * math.atan2(2 * (self.w * self.z + self.x * self.y),
-                                   1 - 2 * (self.x ** 2 + self.y ** 2))
-                   - math.pi / 2)
-            roll = (-1 * math.atan2(2 * (self.w * self.x + self.y * self.z),
-                                    1 - 2 * (self.y ** 2 + self.z ** 2))
-                    - math.pi / 2)
-        return (round(roll, 4), round(pitch, 4), round(yaw, 4))
+            pitch_y = math.asin(sinp)
+    
+        siny_cosp = 2 * (self.w * self.z + self.x * self.y)
+        cosy_cosp = 1 - 2 * (self.y ** 2 + self.z ** 2)
+        yaw_z = math.atan2(siny_cosp, cosy_cosp)
+        '''
+        print(roll_x)
+        print(pitch_y)
+        print(yaw_z)
+        '''
+        return roll_x, pitch_y, yaw_z
 
     def to_unit_vector(self):
         roll, pitch, yaw = self.to_euler()
