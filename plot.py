@@ -20,10 +20,14 @@ def drawCir(center_x,center_y,center_z,n,scale):
 
 def drawCyl(v, p0, R, mag):
     #make some vector not in the same direction as v
+    print(v)
+
     not_v = np.array([1, 0, 0])
     if (v == not_v).all():
             not_v = np.array([0, 1, 0])
-    
+    not_v = np.array([-1, 0, 0])
+    if (v == not_v).all():
+            not_v = np.array([0, 1, 0])
     #make vector perpendicular to v
     n1 = np.cross(v, not_v)
     #normalize n1
@@ -61,7 +65,7 @@ ax.set_ylabel('y')
 ax.set_zlabel('z')
 
 
-q0 = Quaternion(-0.5504521,-0.0528917,-0.8325403,-0.0328874)
+q0 = Quaternion(0,.7071,.7071,0)
 x,y,z = q0.to_unit_vector()
 v=np.array([x,y,z])
 #axis and radius
@@ -69,10 +73,15 @@ p0 = np.array([20, 22, 10]) #point at one end
 R = .2
 mag = 16
 endpoint = p0 + v * mag
+
 x,y,z = drawCir(p0[0],p0[1],p0[2], 150, .5) #Center x,y,z ; surface res; radius
 ax.plot_surface(x,y,z,rstride=4, cstride=4, color="yellow")
 s1,t1,b1 = drawCyl(v,p0,R,mag)
+ax.plot_surface(s1[0], s1[1], s1[2], color='blue')
+ax.plot_surface(t1[0], t1[1], t1[2], color='blue')
+ax.plot_surface(b1[0], b1[1], b1[2], color='blue')
 
+"""
 x,y,z = drawCir(endpoint[0],endpoint[1],endpoint[2], 150, .5) #Center x,y,z ; surface res; radius
 ax.plot_surface(x,y,z,rstride=4, cstride=4, color="yellow")
 
@@ -118,6 +127,6 @@ ax.plot_surface(x,y,z,rstride=4, cstride=4, color="yellow")
 ax.plot_surface(s1[0], s1[1], s1[2], color='green')
 ax.plot_surface(t1[0], t1[1], t1[2], color='green')
 ax.plot_surface(b1[0], b1[1], b1[2], color='green')
-
+"""
 plt.show(block=True)
 
