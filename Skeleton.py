@@ -118,6 +118,44 @@ class Skeleton:
         self.upper_torso_inv = Quaternion.conjugate(self.upper_torso)
         self.lower_torso_inv = Quaternion.conjugate(self.lower_torso)
 
+    def update(self, **kwargs):
+        for key in kwargs.keys:
+            
+            if key == "left_hand":
+                self.left_hand = Quaternion.hamilton_product(kwargs[key], self.left_hand_inv)
+            if key == "left_forearm":
+                self.left_forearm = Quaternion.hamilton_product(kwargs[key], self.left_forearm_inv)
+            if key == "left_bicep":
+                self.left_bicep = Quaternion.hamilton_product(kwargs[key], self.left_bicep_inv)
+
+            if key == "right_hand":
+                self.right_hand = Quaternion.hamilton_product(kwargs[key], self.right_hand_inv)
+            if key == "right_forearm":
+                self.right_forearm = Quaternion.hamilton_product(kwargs[key], self.right_forearm_inv)
+            if key == "right_bicep":
+                self.right_bicep = Quaternion.hamilton_product(kwargs[key], self.right_bicep_inv)
+
+            if key == "left_foot":
+                self.left_foot = Quaternion.hamilton_product(kwargs[key], self.left_foot_inv)
+            if key == "left_shin":
+                self.left_shin = Quaternion.hamilton_product(kwargs[key], self.left_shin_inv)
+            if key == "left_thigh":
+                self.left_thigh = Quaternion.hamilton_product(kwargs[key], self.left_thigh_inv)
+
+            if key == "right_foot":
+                self.right_foot = Quaternion.hamilton_product(kwargs[key], self.right_foot_inv)
+            if key == "right_shin":
+                self.right_shin = Quaternion.hamilton_product(kwargs[key], self.right_shin_inv)
+            if key == "right_thigh":
+                self.right_thigh = Quaternion.hamilton_product(kwargs[key], self.right_thigh_inv)
+
+            if key == "head":
+                self.head = Quaternion.hamilton_product(kwargs[key], self.head_inv)
+            if key == "upper_torso":
+                self.upper_torso = Quaternion.hamilton_product(kwargs[key], self.upper_torso_inv)
+            if key == "lower_torso":
+                self.lower_torso = Quaternion.hamilton_product(kwargs[key], self.lower_torso_inv)
+    '''
     def skeleton_update(self, right_hand, right_forearm, right_bicep, left_hand,
                         left_forearm, left_bicep, upper_torso, lower_torso, right_foot,
                         right_shin, right_thigh, left_foot, left_shin, left_thigh):
@@ -140,6 +178,7 @@ class Skeleton:
         self.head = Quaternion.hamilton_product(head, self.head_inv)
         self.upper_torso = Quaternion.hamilton_product(upper_torso, self.upper_torso_inv)
         self.lower_torso = Quaternion.hamilton_product(lower_torso, self.lower_torso_inv)
+    '''
 
     @staticmethod
     def get_end_position(start, q, length):

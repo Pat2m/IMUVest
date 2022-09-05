@@ -6,7 +6,26 @@ from Quaternion import Quaternion
 
 
 def sensor_handler(address, *args):
-    print(address, args)
+    # print(address, args)
+    if address == "/Chordata/raw/kc-CH_6-0":
+        prev = Quaternion(0,.7071,.7071,0)
+        gx, gy, gz, ax, ay, az, mx, my, mz = args
+        Q = sensor_fuse(prev, gx, gy, gz, ax, ay, az, mx, my, mz,
+                       .5)
+        s = "thigh"
+    if address == "/Chordata/raw/kc-CH_6-1":
+        prev = Quaternion(0,.7071,.7071,0)
+        gx, gy, gz, ax, ay, az, mx, my, mz = args
+        Q = sensor_fuse(prev, gx, gy, gz, ax, ay, az, mx, my, mz,
+                       .5)
+        s = "shin"
+    if address == "/Chordata/raw/kc-CH_6-2":
+        prev = Quaternion(0, .707, 0, .707)
+        gx, gy, gz, ax, ay, az, mx, my, mz = args
+        Q = sensor_fuse(prev, gx, gy, gz, ax, ay, az, mx, my, mz,
+                       .5)
+        s = "foot"
+    print(s, ":", Q.get_quadruple())
 
 
 def sensor_fuse(prev, gx, gy, gz, ax, ay, az, mx, my, mz, weight):
@@ -46,11 +65,11 @@ def sensor_fuse(prev, gx, gy, gz, ax, ay, az, mx, my, mz, weight):
     qm = Quaternion.hamilton_product(qm, qti)
 
     # Azimuth
-    w, x, y = qm.get_quadruple()[:2]
+    w, x, y = qm.get_quadruple()[:3]
     azimuth = math.atan2(x, y) + math.pi
     if w > 0:
         azimuth += math.pi
-    azimuth = math.fmod(azimuth, 2 * math.pi) - math.pi 
+    azimuth = math.fmod(azimuth, 2 * math.pi) - math.pi
 
     # Finalize Magnometer Quaternion
     w = math.cos(azimuth * .5)
